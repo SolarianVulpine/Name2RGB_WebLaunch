@@ -67,6 +67,7 @@ const currentNameKeys = {
 
 const footerProfile = {
   authorName: "Torin Teale",
+  liveDemoUrl: "https://solarianvulpine.github.io/Name2RGB_WebLaunch/",
   projectRepoUrl: "https://github.com/SolarianVulpine/Name2RGB_WebLaunch.git",
   originalCRepoUrl: "https://github.com/SolarianVulpine/nameToRGB",
   linkedinUrl: "https://www.linkedin.com/in/torin-teale",
@@ -758,6 +759,21 @@ function App() {
           <div className="site-footer-column">
             <h3>Repositories</h3>
             <ul className="site-footer-links">
+              <li>
+                {footerProfile.liveDemoUrl ? (
+                  <a
+                    href={footerProfile.liveDemoUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Live demo
+                  </a>
+                ) : (
+                  <span className="footer-link-placeholder">
+                    Add live demo URL
+                  </span>
+                )}
+              </li>
               <li>
                 {footerProfile.projectRepoUrl ? (
                   <a

@@ -21,6 +21,15 @@ The original project was a C command-line app called Name Color Generator. It co
 
 That original version included ASCII-art themes, a theme-selection prompt, and an `exit` path at each name prompt. This web version preserves the core conversion logic and the project’s origin, while moving the experience into a more interactive browser UI.
 
+## Development Milestones
+
+- Initial React + Vite scaffold to recreate the Name2RGB concept in the browser.
+- Core UI and conversion flow built out around the three-name RGB model.
+- Theme, copy, and preview interactions refined into the current polished interface.
+- Footer, metadata, and favicon updated to make the project feel like a finished product.
+- GitHub Pages deployment added so the app can be shared as a live demo.
+- Usage and licensing language tightened to position the site as a tool for use, not a template for rebuilding.
+
 ## Development
 
 1. Open a terminal in `C:\Users\Admin\Repos\Name2RGB_WEB`.
