@@ -52,3 +52,7 @@ That original version included ASCII-art themes, a theme-selection prompt, and a
 
 - The web app uses React state and plain browser APIs, so no backend is required.
 - The visual style is original, but it is intentionally tuned toward the clean, diegetic UI language you described.
+
+### Favicon Credit
+
+Art palette Icon by Vecteezy on <a href="https://icon-icons.com/authors/205-vecteezy">Icon-Icons.com</a>
