@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 const themes = [
   {
@@ -168,6 +168,41 @@ function writeSavedMode(mode) {
   window.localStorage.setItem(modeStorageKey, mode);
 }
 
+function clearSavedMode() {
+  if (typeof window === "undefined") {
+    return;
+  }
+
+  window.localStorage.removeItem(modeStorageKey);
+}
+
+function getSystemMode() {
+  if (
+    typeof window === "undefined" ||
+    typeof window.matchMedia !== "function"
+  ) {
+    return "dark";
+  }
+
+  return window.matchMedia("(prefers-color-scheme: light)").matches
+    ? "light"
+    : "dark";
+}
+
+function readSavedModePreference() {
+  if (typeof window === "undefined") {
+    return null;
+  }
+
+  try {
+    const stored = window.localStorage.getItem(modeStorageKey);
+
+    return stored === "light" || stored === "dark" ? stored : null;
+  } catch {
+    return null;
+  }
+}
+
 function calculateChannel(value) {
   const letters = value.trim().toUpperCase();
   let total = 0;
@@ -213,7 +248,10 @@ function breakdownLabel(name) {
 
 function App() {
   const [themeId, setThemeId] = useState(() => readSavedThemeId());
-  const [mode, setMode] = useState(() => readSavedMode());
+  const [modePreference, setModePreference] = useState(() =>
+    readSavedModePreference(),
+  );
+  const [systemMode, setSystemMode] = useState(() => getSystemMode());
   const [firstName, setFirstName] = useState(() =>
     readSavedName(currentNameKeys.first, sampleName.first),
   );
@@ -235,6 +273,40 @@ function App() {
   );
 
   const theme = themes.find((entry) => entry.id === themeId) ?? themes[0];
+  const mode = modePreference ?? systemMode;
+
+  useEffect(() => {
+    if (typeof document !== "undefined") {
+      document.documentElement.dataset.mode = mode;
+    }
+  }, [mode]);
+
+  useEffect(() => {
+    if (
+      typeof window === "undefined" ||
+      typeof window.matchMedia !== "function"
+    ) {
+      return undefined;
+    }
+
+    const media = window.matchMedia("(prefers-color-scheme: light)");
+
+    const updateSystemMode = () => {
+      setSystemMode(media.matches ? "light" : "dark");
+    };
+
+    updateSystemMode();
+
+    if (typeof media.addEventListener === "function") {
+      media.addEventListener("change", updateSystemMode);
+
+      return () => media.removeEventListener("change", updateSystemMode);
+    }
+
+    media.addListener(updateSystemMode);
+
+    return () => media.removeListener(updateSystemMode);
+  }, []);
 
   function handleThemeChange(nextThemeId) {
     setThemeId(nextThemeId);
@@ -242,7 +314,13 @@ function App() {
   }
 
   function handleModeChange(nextMode) {
-    setMode(nextMode);
+    setModePreference(nextMode);
+
+    if (nextMode === null) {
+      clearSavedMode();
+      return;
+    }
+
     writeSavedMode(nextMode);
   }
 
@@ -448,14 +526,27 @@ function App() {
             >
               <button
                 type="button"
-                className={mode === "light" ? "mode-chip active" : "mode-chip"}
+                className={
+                  modePreference === null ? "mode-chip active" : "mode-chip"
+                }
+                onClick={() => handleModeChange(null)}
+              >
+                System
+              </button>
+              <button
+                type="button"
+                className={
+                  modePreference === "light" ? "mode-chip active" : "mode-chip"
+                }
                 onClick={() => handleModeChange("light")}
               >
                 Light
               </button>
               <button
                 type="button"
-                className={mode === "dark" ? "mode-chip active" : "mode-chip"}
+                className={
+                  modePreference === "dark" ? "mode-chip active" : "mode-chip"
+                }
                 onClick={() => handleModeChange("dark")}
               >
                 Dark

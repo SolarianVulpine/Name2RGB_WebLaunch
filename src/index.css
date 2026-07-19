@@ -151,6 +151,19 @@ input {
   background: var(--surface-2);
 }
 
+.shell[data-mode='light'] .metrics-row strong,
+.shell[data-mode='light'] .trace-list strong {
+  color: var(--text);
+}
+
+.shell[data-mode='light'] .metrics-row div {
+  background: color-mix(in srgb, var(--surface-3) 72%, white 28%);
+}
+
+.shell[data-mode='light'] .trace-metric-cell {
+  background: color-mix(in srgb, var(--accent) 7%, var(--surface-3));
+}
+
 .background-grid {
   position: absolute;
   inset: 0;
@@ -760,6 +773,21 @@ input {
 .swatch-copy-all-button {
   margin-top: 8px;
   width: fit-content;
+}
+
+.shell[data-mode='light'] .swatch-copy-all-button {
+  color: #23303d;
+  background: linear-gradient(180deg,
+      color-mix(in srgb, var(--accent) 46%, white 54%),
+      color-mix(in srgb, var(--accent) 30%, white 70%));
+  box-shadow: 0 12px 24px color-mix(in srgb, var(--accent) 18%, transparent);
+}
+
+.shell[data-mode='light'] .swatch-copy-all-button:hover,
+.shell[data-mode='light'] .swatch-copy-all-button:focus-visible {
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--accent) 28%, var(--frame)),
+    0 12px 22px color-mix(in srgb, var(--accent) 14%, transparent);
 }
 
 .copy-value+.copy-value {
