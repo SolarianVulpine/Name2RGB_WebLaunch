@@ -2,6 +2,12 @@
 
 This is the React + Vite web version of the original command-line project. The source C implementation lives in [SolarianVulpine/nameToRGB](https://github.com/SolarianVulpine/nameToRGB), and this site keeps the same color math while presenting it in a browser-first interface.
 
+## License
+
+This repository is proprietary and all rights are reserved by the author. You may view and run the project for personal use, but you may not copy, modify, redistribute, or rebuild it without explicit written permission. See [LICENSE](LICENSE) for the full terms.
+
+In plain terms: enjoy the tool, but please do not remake, republish, or ship a derivative version of the project without permission.
+
 ## What It Does
 
 - Converts first, middle, and last names into RGB values

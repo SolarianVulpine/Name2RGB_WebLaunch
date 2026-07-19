@@ -741,7 +741,9 @@ function App() {
             <p className="section-label">Footer</p>
             <h2 className="site-footer-title">Credits and links</h2>
             <p className="site-footer-copy">
-              Built by {footerProfile.authorName}. Inspired by{" "}
+              Built by {footerProfile.authorName}. Have fun using the tool and
+              exploring the color math, but please don’t copy, rebuild, or
+              republish the project itself. Inspired by{" "}
               <a
                 href="https://www.instagram.com/reel/C--dKqZuYMS/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
                 target="_blank"
@@ -809,7 +811,8 @@ function App() {
               </li>
             </ul>
             <p className="site-footer-credit">
-              Name2RGB interface adaptation by {footerProfile.authorName}.
+              Name2RGB interface adaptation by {footerProfile.authorName} for
+              personal use and experimentation.
             </p>
           </div>
         </div>
