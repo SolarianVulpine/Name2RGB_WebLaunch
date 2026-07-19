@@ -67,7 +67,7 @@ const currentNameKeys = {
 
 const footerProfile = {
   authorName: "Torin Teale",
-  projectRepoUrl: "",
+  projectRepoUrl: "https://github.com/SolarianVulpine/Name2RGB_WebLaunch.git",
   originalCRepoUrl: "https://github.com/SolarianVulpine/nameToRGB",
   linkedinUrl: "https://www.linkedin.com/in/torin-teale",
 };
